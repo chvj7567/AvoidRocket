@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UI_Joystick : UI_Base
+public class UI_Images : UI_Base
 {
     RectTransform _lever;
     RectTransform _joystick;
@@ -25,9 +25,9 @@ public class UI_Joystick : UI_Base
         _joystick = GetComponent<RectTransform>();
         _leverRange = 35f;
 
-        BindEvent(gameObject, MoveStart, Define.UIEvent.BeginDrag);
-        BindEvent(gameObject, MoveStart, Define.UIEvent.Drag);
-        BindEvent(gameObject, MoveEnd, Define.UIEvent.EndDrag);
+        BindEvent(_lever.gameObject, MoveStart, Define.UIEvent.BeginDrag);
+        BindEvent(_lever.gameObject, MoveStart, Define.UIEvent.Drag);
+        BindEvent(_lever.gameObject, MoveEnd, Define.UIEvent.EndDrag);
     }
 
     void MoveStart(PointerEventData data)
@@ -36,7 +36,7 @@ public class UI_Joystick : UI_Base
 
         TouchPos = data.position - _joystick.anchoredPosition;
 
-        if(TouchPos.magnitude > _leverRange)
+        if (TouchPos.magnitude > _leverRange)
         {
             TouchPos = TouchPos.normalized * _leverRange;
         }

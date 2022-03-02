@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager
 {
@@ -34,5 +36,47 @@ public class GameManager
         }
 
         return go;
+    }
+
+    public Define.GameObjects GetWorldObjectType(GameObject go)
+    {
+        BaseController bc = go.GetComponent<BaseController>();
+        if (bc == null)
+            return Define.GameObjects.Unknown;
+
+        return bc.GameObjectType;
+    }
+
+    public void Despawn(GameObject go)
+    {
+        Define.GameObjects type = GetWorldObjectType(go);
+
+        switch (type)
+        {
+            case Define.GameObjects.Background:
+                _background = null;
+                break;
+            case Define.GameObjects.RocketStartArea:
+                _rocketStartArea = null;
+                break;
+            case Define.GameObjects.Player:
+                _player = null;
+                break;
+            case Define.GameObjects.Rocket:
+                break;
+        }
+
+        MasterManager.Resource.Destroy(go);
+    }
+
+    public void EndGame()
+    {
+        GameObject end = MasterManager.Resource.Instantiate("UI/EndBackground");
+        Despawn(_player);
+    }
+
+    public void Retry()
+    {
+        SceneManager.LoadScene(0);
     }
 }

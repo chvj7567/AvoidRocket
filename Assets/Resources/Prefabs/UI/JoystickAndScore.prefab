@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3571440677945472354}
   - component: {fileID: 2271772266151866782}
   - component: {fileID: 5026504976925830298}
-  - component: {fileID: 8659854978506652431}
+  - component: {fileID: 49572715224544553}
   m_Layer: 5
   m_Name: Joystick
   m_TagString: Untagged
@@ -77,7 +77,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8659854978506652431
+--- !u!114 &49572715224544553
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,7 +86,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 398957918263828945}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af4cbe71c003a8b46a1ff0f481d4e115, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c79e1b8cca16e64ab9ed760b53450b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &736299458887816307
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 4252976460212816012}
   - component: {fileID: 1834641968508668919}
   - component: {fileID: 8157625644354880207}
-  - component: {fileID: 2097928422558604186}
+  - component: {fileID: 6110773904518375702}
   m_Layer: 5
   m_Name: TimeScore
   m_TagString: Untagged
@@ -169,7 +169,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Time : 0 second'
---- !u!114 &2097928422558604186
+--- !u!114 &6110773904518375702
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 736299458887816307}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cc028c196682da4bb70d4efe7d7f019, type: 3}
+  m_Script: {fileID: 11500000, guid: 9331d8665bb376c4a89cb9750571eeca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3741870499035136134
@@ -315,7 +315,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &7562870545702500580
 MonoBehaviour:
