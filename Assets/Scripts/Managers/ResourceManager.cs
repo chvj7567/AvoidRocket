@@ -40,7 +40,7 @@ public class ResourceManager
 
         if (index == 6)
         {
-            original.AddComponent<Poolable>();
+            Util.GetOrAddComponent<Poolable>(original);
         }
 
         // 풀링 대상이면 Pop으로 꺼내준다.
