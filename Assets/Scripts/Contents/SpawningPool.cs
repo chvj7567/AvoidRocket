@@ -41,11 +41,14 @@ public class SpawningPool : MonoBehaviour
             rocket.transform.position = randPos;
             rocket.transform.localScale = new Vector3(_rocketScale, _rocketScale, _rocketScale);
             RocketController controller = Util.GetOrAddComponent<RocketController>(rocket);
-            Rigidbody2D rb = Util.GetOrAddComponent<Rigidbody2D>(rocket);
-            
 
+            Rigidbody2D rb = Util.GetOrAddComponent<Rigidbody2D>(rocket);
             rb.gravityScale = 0;
 
+            CapsuleCollider2D col = Util.GetOrAddComponent<CapsuleCollider2D>(rocket);
+
+            rocket.layer = LayerMask.NameToLayer("Rocket");
+            
             yield return new WaitForSeconds(_rocketGen);
         }
     }
