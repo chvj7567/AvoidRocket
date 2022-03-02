@@ -8,9 +8,6 @@ public class GameManager
     GameObject _background;
     GameObject _rocketStartArea;
     GameObject _player;
-    HashSet<GameObject> _rockets = new HashSet<GameObject>();
-
-    public Action<int> OnSpawnEvent;
 
     public GameObject GetPlayer() { return _player; }
 
@@ -33,9 +30,6 @@ public class GameManager
                 _player = go;
                 break;
             case Define.GameObjects.Rocket:
-                _rockets.Add(go);
-                if (OnSpawnEvent != null)
-                    OnSpawnEvent.Invoke(1);
                 break;
         }
 
