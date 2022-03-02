@@ -10,8 +10,6 @@ public class PlayerController : BaseController
     GameObject go;
     public override void Init()
     {
-        go = MasterManager.Resource.Instantiate("Volumetric");
-        go.transform.parent = transform;
         State = Define.State.Alive;
         _speed = 10f;
         GameObjectType = Define.GameObjects.Player;

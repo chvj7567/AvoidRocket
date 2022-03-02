@@ -25,7 +25,6 @@ public class PseudoVolumetricExplosion : MonoBehaviour {
 	}
 
 	void Update () {
-		
 		float timeFromBegin = Time.time - startTime;
 		float pos = (loopOffset + timeFromBegin) / loopDuration;
 		float r = Mathf.Sin((pos) * (2 * Mathf.PI)) * 0.5f + 0.25f;

@@ -66,13 +66,20 @@ public class GameManager
                 break;
         }
 
-        MasterManager.Resource.Destroy(go);
+        MasterManager.Resource.Destroy(go, 1f);
     }
 
     public void EndGame()
     {
-        GameObject end = MasterManager.Resource.Instantiate("UI/EndBackground");
+        Explosion();
         Despawn(_player);
+        GameObject end = MasterManager.Resource.Instantiate("UI/EndBackground");
+    }
+
+    public void Explosion()
+    {
+        GameObject explosion = MasterManager.Resource.Instantiate("Explosion");
+        explosion.transform.SetParent(_player.transform);
     }
 
     public void Retry()
