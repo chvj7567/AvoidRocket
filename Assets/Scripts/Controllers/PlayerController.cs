@@ -7,11 +7,8 @@ public class PlayerController : BaseController
     [SerializeField]
     float _speed;
 
-    GameObject go;
     public override void Init()
     {
-        go = MasterManager.Resource.Instantiate("Volumetric");
-        go.transform.parent = transform;
         State = Define.State.Alive;
         _speed = 10f;
         GameObjectType = Define.GameObjects.Player;
@@ -33,6 +30,8 @@ public class PlayerController : BaseController
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.tag == "Wall")
+            return;
         MasterManager.Game.EndGame();
     }
 }
