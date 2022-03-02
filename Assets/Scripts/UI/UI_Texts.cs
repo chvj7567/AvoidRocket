@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_TimeScore : UI_Base
+public class UI_Texts : UI_Base
 {
     enum Texts
     {

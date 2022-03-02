@@ -52,6 +52,8 @@ public abstract class UI_Base : MonoBehaviour
 
 	// idx에 해당하는 이미지 컴포넌트를 가져온다.
 	protected Image GetImage(int idx) { return Get<Image>(idx); }
+	// idx에 해당하는 버튼 컴포넌트를 가져온다.
+	protected Button GetButton(int idx) { return Get<Button>(idx); }
 
 	// go에 type에 해당하는 이벤트를 연결 시킨다.
 	public static void BindEvent(GameObject go, Action action, Define.UIEvent type = Define.UIEvent.Update)
@@ -86,6 +88,10 @@ public abstract class UI_Base : MonoBehaviour
 				evt.OnEndDragHandler -= action;
 				evt.OnEndDragHandler += action;
 				break;
+			case Define.UIEvent.Click:
+				evt.OnClickHandler -= action;
+				evt.OnClickHandler += action;
+				break;
 		}
 	}
 
@@ -117,6 +123,9 @@ public abstract class UI_Base : MonoBehaviour
 				break;
 			case Define.UIEvent.EndDrag:
 				evt.OnEndDragHandler -= action;
+				break;
+			case Define.UIEvent.Click:
+				evt.OnClickHandler -= action;
 				break;
 		}
 	}

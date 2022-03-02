@@ -2,28 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RocketController : MonoBehaviour
+public class RocketController : BaseController
 {
     [SerializeField]
     float _speed;
-    Transform _player;
     Vector3 _direction;
 
-    void Awake()
+    public override void Init()
     {
+        State = Define.State.Alive;
         _speed = 10f;
-        _player = GameObject.FindGameObjectWithTag("Player").transform;
-        _direction = (_player.position - transform.position).normalized;
+        if(_player != null)
+            _direction = (_player.position - transform.position).normalized;
+        else
+            _direction = (Vector3.zero - transform.position).normalized;
+
+        GameObjectType = Define.GameObjects.Rocket;
     }
 
-    void Update()
+    public override void Move()
     {
         transform.position += _direction * Time.deltaTime * _speed;
         transform.up = _direction;
 
-        if(transform.position.x < -30 || transform.position.x > 30)
-            MasterManager.Resource.Destroy(gameObject);
-        if(transform.position.y < -30 || transform.position.y > 30)
-            MasterManager.Resource.Destroy(gameObject);
+        if (transform.position.x < -30 || transform.position.x > 30)
+            Die();
+        if (transform.position.y < -30 || transform.position.y > 30)
+            Die();
     }
+
+    public override void Die()
+    {
+        State = Define.State.Die;
+        MasterManager.Game.Despawn(gameObject);
+    }
+
+    
 }

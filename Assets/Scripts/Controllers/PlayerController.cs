@@ -2,28 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : BaseController
 {
     [SerializeField]
     float _speed;
-    UI_Joystick _joystick;
-    
-    void Awake()
+
+    GameObject go;
+    public override void Init()
     {
+        go = MasterManager.Resource.Instantiate("Volumetric");
+        go.transform.parent = transform;
+        State = Define.State.Alive;
         _speed = 10f;
-        _joystick = Util.FindChild<UI_Joystick>(MasterManager.UI.Root, "Joystick", true);
-    }
-    void Start()
-    {
-        
+        GameObjectType = Define.GameObjects.Player;
     }
 
-    void Update()
+    public override void Move()
     {
-        if (_joystick.IsMove)
+        if (_joystick.IsMove && State == Define.State.Alive)
         {
             Vector3 direction = _joystick.TouchPos.normalized;
             transform.position += direction * Time.deltaTime * _speed;
         }
+    }
+
+    public override void Die()
+    {
+        State = Define.State.Die;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        MasterManager.Game.EndGame();
     }
 }

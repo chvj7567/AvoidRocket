@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4885458815428548}
   - component: {fileID: 33427012357304492}
   - component: {fileID: 23298332008258128}
+  - component: {fileID: 6673863104779629317}
   m_Layer: 0
   m_Name: Rocket10_Red
   m_TagString: Untagged
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6673863104779629317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223216083384138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8db78b1298b1a7649958edd528aa42fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsUsing: 0

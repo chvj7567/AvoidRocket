@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class Define
 {
+    // 플레이어 상태
+    public enum State
+    {
+        Alive,
+        Die,
+    }
+
     public enum GameObjects
     {
+        Unknown,
         Background,
         RocketStartArea,
         Player,
@@ -18,5 +26,6 @@ public class Define
         Drag,
         EndDrag,
         Update,
+        Click,
     }
 }
