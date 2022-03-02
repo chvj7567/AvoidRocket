@@ -11,10 +11,17 @@ public class UI_Texts : UI_Base
     }
 
     Text _score;
-    int _avoidTime;
+    float _startTime;
+    float _avoidTime;
+    float _result;
+    List<int> _data;
 
     public override void Init()
     {
+        _data = new List<int>();
+        _result = 0;
+        _startTime = Time.time;
+
         Bind<Text>(typeof(Texts));
         _score = GetText((int)Texts.TimeScore);
 
@@ -23,9 +30,17 @@ public class UI_Texts : UI_Base
 
     public void AvoidTime()
     {
-        _avoidTime = int.Parse(Time.time.ToString("F0"));
+        _avoidTime = float.Parse((Time.time - _startTime).ToString("F0"));
         _score.text = $"Time : {_avoidTime} second";
 
-        // 충돌 시 이벤트 해제
+        if (MasterManager.Game.IsEnd)
+        {
+            if(_result == 0 || _result > _avoidTime)
+            {
+                _result = _avoidTime;
+                _data.Add((int)_result);
+                _avoidTime = Time.time;
+            }
+        }
     }
 }

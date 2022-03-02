@@ -7,7 +7,6 @@ public class PlayerController : BaseController
     [SerializeField]
     float _speed;
 
-    GameObject go;
     public override void Init()
     {
         State = Define.State.Alive;
@@ -31,6 +30,8 @@ public class PlayerController : BaseController
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.tag == "Wall")
+            return;
         MasterManager.Game.EndGame();
     }
 }
