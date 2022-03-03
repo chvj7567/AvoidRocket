@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class UIManager
 {
+    public GameObject StartUI { get; private set; }
+    public GameObject EndUI { get; private set; }
+    public GameObject Joystick { get; private set; }
+    public GameObject TimeScore { get; private set; }
+
     int _order = 1;
     public GameObject Root
     {
@@ -38,13 +43,47 @@ public class UIManager
         }
     }
 
-    public GameObject ShowUI(string name)
+    public void ShowUI(string name, Define.UI type)
     {
         GameObject go = MasterManager.Resource.Instantiate($"UI/{name}");
         go.transform.SetParent(Root.transform);
         SetCanvas(go, true);
 
-        return go;
+        switch(type)
+        {
+            case Define.UI.StartUI:
+                StartUI = go;
+                break;
+            case Define.UI.EndUI:
+                EndUI = go;
+                break;
+            case Define.UI.Joystick:
+                Joystick = go;
+                break;
+            case Define.UI.TimeScore:
+                TimeScore = go;
+                break;
+        }
     }
 
+    public void DestroyUI(GameObject ui, Define.UI type)
+    {
+        switch(type)
+        {
+            case Define.UI.StartUI:
+                StartUI = null;
+                break;
+            case Define.UI.EndUI:
+                EndUI = null;
+                break;
+            case Define.UI.Joystick:
+                Joystick = null;
+                break;
+            case Define.UI.TimeScore:
+                TimeScore = null;
+                break;
+        }
+
+        MasterManager.Resource.Destroy(ui);
+    }
 }

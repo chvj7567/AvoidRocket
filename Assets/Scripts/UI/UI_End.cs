@@ -4,24 +4,24 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UI_Buttons : UI_Base
+public class UI_End : UI_Base
 {
     Button _retry;
 
     enum Buttons
     {
-        Retry,
+        RetryGame,
     }
 
     public override void Init()
     {
         Bind<Button>(typeof(Buttons));
-        _retry = GetButton((int)Buttons.Retry).gameObject.GetComponent<Button>();
-        BindEvent(_retry.gameObject, Retry, Define.UIEvent.Click);
+        _retry = GetComponent<Button>();
+        BindEvent(_retry.gameObject, RetryGame, Define.UIEvent.Click);
     }
 
-    public void Retry(PointerEventData data)
+    public void RetryGame(PointerEventData data)
     {
-        MasterManager.Game.Retry();
+        MasterManager.Game.RetryGame();
     }
 }

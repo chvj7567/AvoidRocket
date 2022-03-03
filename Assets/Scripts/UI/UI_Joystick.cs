@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UI_Images : UI_Base
+public class UI_Joystick : UI_Base
 {
     RectTransform _lever;
     RectTransform _joystick;

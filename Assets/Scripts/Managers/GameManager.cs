@@ -13,6 +13,8 @@ public class GameManager
     HashSet<GameObject> _rockets = new HashSet<GameObject>();
 
     GameObject explosion;
+
+    public bool IsStart { get; private set; }
     public bool IsEnd { get; private set; }
 
     public GameObject GetPlayer() { return _player; }
@@ -34,7 +36,6 @@ public class GameManager
                 break;
             case Define.GameObjects.Player:
                 _player = go;
-                IsEnd = false;
                 break;
             case Define.GameObjects.Rocket:
                 _rockets.Add(go);
@@ -67,7 +68,6 @@ public class GameManager
                 break;
             case Define.GameObjects.Player:
                 _player = null;
-                IsEnd = true;
                 break;
             case Define.GameObjects.Rocket:
                 _rockets.Remove(go);
@@ -77,11 +77,21 @@ public class GameManager
         MasterManager.Resource.Destroy(go);
     }
 
+    public void StartGame()
+    {
+        IsStart = true;
+        IsEnd = false;
+        MasterManager.UI.DestroyUI(MasterManager.UI.StartUI, Define.UI.StartUI);
+        Spawn(Define.GameObjects.Player, "SpaceShip");
+    }
+
     public void EndGame()
     {
+        IsStart = false;
+        IsEnd = true;
         Explosion();
         Despawn(_player);
-        MasterManager.Resource.Instantiate("UI/EndBackground");
+        MasterManager.UI.ShowUI("EndUI", Define.UI.EndUI);
     }
 
     public void Explosion()
@@ -90,7 +100,7 @@ public class GameManager
         explosion.transform.position = _player.transform.position;
     }
 
-    public void Retry()
+    public void RetryGame()
     {
         foreach (GameObject go in _rockets)
         {

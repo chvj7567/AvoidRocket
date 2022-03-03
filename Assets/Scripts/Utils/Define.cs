@@ -20,6 +20,15 @@ public class Define
         Rocket,
     }
 
+    public enum UI
+    {
+        Unknown,
+        StartUI,
+        EndUI,
+        Joystick,
+        TimeScore,
+    }
+
     public enum UIEvent
     {
         BeginDrag,

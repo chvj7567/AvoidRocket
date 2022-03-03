@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_Texts : UI_Base
+public class UI_Score : UI_Base
 {
     enum Texts
     {
@@ -35,7 +35,7 @@ public class UI_Texts : UI_Base
 
         if (MasterManager.Game.IsEnd)
         {
-            if(_result == 0 || _result > _avoidTime)
+            if (_result == 0 || _result > _avoidTime)
             {
                 _result = _avoidTime;
                 _data.Add((int)_result);

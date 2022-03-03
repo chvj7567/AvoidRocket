@@ -9,9 +9,8 @@ public class GameScene : BaseScene
     {
         base.Init();
 
-        GameObject background = MasterManager.UI.ShowUI("Background");
-        GameObject joystickAndScore = MasterManager.UI.ShowUI("JoyStickAndScore");
-        GameObject player = MasterManager.Game.Spawn(Define.GameObjects.Player, "SpaceShip");
+        MasterManager.Resource.Instantiate("Background");
+        MasterManager.UI.ShowUI("StartUI", Define.UI.StartUI);
         GameObject rocketStartArea = MasterManager.Game.Spawn(Define.GameObjects.RocketStartArea, "RocketStartArea");
         GameObject spawningPool = new GameObject { name = "@Spawning Pool" };
         Util.GetOrAddComponent<SpawningPool>(spawningPool);
