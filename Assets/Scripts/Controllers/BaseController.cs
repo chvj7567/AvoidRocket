@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class BaseController : MonoBehaviour
 {
     protected Transform _player;
-    protected UI_Images _joystick;
+    protected UI_Joystick _joystick;
     protected Define.State State { get; set; }
 
     public Define.GameObjects GameObjectType { get; protected set; } = Define.GameObjects.Unknown;
@@ -13,7 +13,7 @@ public abstract class BaseController : MonoBehaviour
     private void Awake()
     {
         GameObject go = GameObject.FindGameObjectWithTag("Player");
-        _joystick = Util.FindChild<UI_Images>(MasterManager.UI.Root, "Joystick", true);
+        _joystick = Util.FindChild<UI_Joystick>(MasterManager.UI.Root, "Joystick", true);
 
         if (go != null)
             _player = go.transform;

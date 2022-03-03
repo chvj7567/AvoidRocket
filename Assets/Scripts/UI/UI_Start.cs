@@ -10,13 +10,13 @@ public class UI_Start : UI_Base
 
     enum Buttons
     {
-        StartGame,
+        StartButton = 0,
     }
 
     public override void Init()
     {
         Bind<Button>(typeof(Buttons));
-        _start = GetComponent<Button>();
+        _start = GetButton((int)Buttons.StartButton).gameObject.GetComponent<Button>();
         BindEvent(_start.gameObject, StartGame, Define.UIEvent.Click);
     }
 

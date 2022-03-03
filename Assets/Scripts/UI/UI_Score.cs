@@ -7,7 +7,7 @@ public class UI_Score : UI_Base
 {
     enum Texts
     {
-        TimeScore,
+        TimeScore = 0,
     }
 
     Text _score;

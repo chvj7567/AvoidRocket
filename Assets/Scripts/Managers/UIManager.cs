@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UIManager
 {
+    public GameObject Background { get; private set; }
     public GameObject StartUI { get; private set; }
     public GameObject EndUI { get; private set; }
     public GameObject Joystick { get; private set; }
@@ -27,7 +28,12 @@ public class UIManager
     {
         Canvas canvas = Util.GetOrAddComponent<Canvas>(go);
         canvas.renderMode = RenderMode.ScreenSpaceCamera;
-        canvas.planeDistance = 10f;
+
+        if(go.name == "MainBackground")
+            canvas.planeDistance = 15f;
+        else
+            canvas.planeDistance = 5f;
+
         canvas.worldCamera = Camera.main;
         canvas.overrideSorting = true;
 
@@ -47,10 +53,13 @@ public class UIManager
     {
         GameObject go = MasterManager.Resource.Instantiate($"UI/{name}");
         go.transform.SetParent(Root.transform);
-        SetCanvas(go, true);
+        SetCanvas(go);
 
         switch(type)
         {
+            case Define.UI.Background:
+                Background = go;
+                break;
             case Define.UI.StartUI:
                 StartUI = go;
                 break;
@@ -70,6 +79,9 @@ public class UIManager
     {
         switch(type)
         {
+            case Define.UI.Background:
+                Background = null;
+                break;
             case Define.UI.StartUI:
                 StartUI = null;
                 break;

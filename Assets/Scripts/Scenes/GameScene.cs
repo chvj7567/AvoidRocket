@@ -9,11 +9,8 @@ public class GameScene : BaseScene
     {
         base.Init();
 
-        MasterManager.Resource.Instantiate("Background");
+        MasterManager.UI.ShowUI("MainBackground", Define.UI.Background);
         MasterManager.UI.ShowUI("StartUI", Define.UI.StartUI);
-        GameObject rocketStartArea = MasterManager.Game.Spawn(Define.GameObjects.RocketStartArea, "RocketStartArea");
-        GameObject spawningPool = new GameObject { name = "@Spawning Pool" };
-        Util.GetOrAddComponent<SpawningPool>(spawningPool);
     }
 
     public override void Clear()

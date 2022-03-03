@@ -10,13 +10,13 @@ public class UI_End : UI_Base
 
     enum Buttons
     {
-        RetryGame,
+        BackButton,
     }
 
     public override void Init()
     {
         Bind<Button>(typeof(Buttons));
-        _retry = GetComponent<Button>();
+        _retry = GetButton((int)Buttons.BackButton).gameObject.GetComponent<Button>();
         BindEvent(_retry.gameObject, RetryGame, Define.UIEvent.Click);
     }
 

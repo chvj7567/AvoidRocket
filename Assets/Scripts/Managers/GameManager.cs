@@ -82,6 +82,11 @@ public class GameManager
         IsStart = true;
         IsEnd = false;
         MasterManager.UI.DestroyUI(MasterManager.UI.StartUI, Define.UI.StartUI);
+        MasterManager.UI.ShowUI("JoystickUI", Define.UI.Joystick);
+        MasterManager.UI.ShowUI("TimeScoreUI", Define.UI.TimeScore);
+        Spawn(Define.GameObjects.RocketStartArea, "RocketStartArea");
+        GameObject spawningPool = new GameObject { name = "@Spawning Pool" };
+        Util.GetOrAddComponent<SpawningPool>(spawningPool);
         Spawn(Define.GameObjects.Player, "SpaceShip");
     }
 
