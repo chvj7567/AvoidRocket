@@ -105,7 +105,7 @@ public class GameManager
         explosion.transform.position = _player.transform.position;
     }
 
-    public void RetryGame()
+    public void BackGame()
     {
         foreach (GameObject go in _rockets)
         {

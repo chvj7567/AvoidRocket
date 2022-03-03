@@ -6,22 +6,31 @@ using UnityEngine.UI;
 
 public class UI_End : UI_Base
 {
+    
     Button _retry;
+    Text _score;
 
     enum Buttons
     {
         BackButton,
     }
 
+    enum Texts
+    {
+        Score,
+    }
+
     public override void Init()
     {
         Bind<Button>(typeof(Buttons));
+        Bind<Text>(typeof(Texts));
         _retry = GetButton((int)Buttons.BackButton).gameObject.GetComponent<Button>();
-        BindEvent(_retry.gameObject, RetryGame, Define.UIEvent.Click);
+        _score = GetText((int)Texts.Score).gameObject.GetComponent<Text>();
+        BindEvent(_retry.gameObject, BackGame, Define.UIEvent.Click);
     }
 
-    public void RetryGame(PointerEventData data)
+    public void BackGame(PointerEventData data)
     {
-        MasterManager.Game.RetryGame();
+        MasterManager.Game.BackGame();
     }
 }

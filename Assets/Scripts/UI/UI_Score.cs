@@ -13,13 +13,12 @@ public class UI_Score : UI_Base
     Text _score;
     float _startTime;
     float _avoidTime;
-    float _result;
-    List<int> _data;
+
+    float _record;
 
     public override void Init()
     {
-        _data = new List<int>();
-        _result = 0;
+        _record = 0;
         _startTime = Time.time;
 
         Bind<Text>(typeof(Texts));
@@ -35,10 +34,17 @@ public class UI_Score : UI_Base
 
         if (MasterManager.Game.IsEnd)
         {
-            if (_result == 0 || _result > _avoidTime)
+            if (_record == 0 || _record > _avoidTime)
             {
-                _result = _avoidTime;
-                _data.Add((int)_result);
+                _record = _avoidTime;
+
+                UI_Score score = Util.FindChild(MasterManager.UI.Root, "TimeScoreUI", true).GetComponent<UI_Score>();
+                Text record = Util.FindChild(MasterManager.UI.Root, "Score", true).GetComponent<Text>();
+                if (score != null)
+                {
+                    record.text = $"{_record} second";
+                }
+
                 _avoidTime = Time.time;
             }
         }
