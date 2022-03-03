@@ -11,6 +11,12 @@ public class Define
         Die,
     }
 
+    public enum Audio
+    {
+        Bgm,
+        Explosion,
+        MaxCount,
+    }
     public enum GameObjects
     {
         Unknown,

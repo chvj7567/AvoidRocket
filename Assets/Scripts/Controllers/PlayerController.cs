@@ -32,6 +32,7 @@ public class PlayerController : BaseController
     {
         if (collision.gameObject.tag == "Wall")
             return;
+        MasterManager.Audio.Play("Explosion", Define.Audio.Explosion);
         MasterManager.Game.EndGame();
     }
 }

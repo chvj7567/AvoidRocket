@@ -9,6 +9,7 @@ public class GameScene : BaseScene
     {
         base.Init();
 
+        MasterManager.Audio.Play("SpaceBgm", Define.Audio.Bgm);
         MasterManager.UI.ShowUI("MainBackground", Define.UI.Background);
         MasterManager.UI.ShowUI("StartUI", Define.UI.StartUI);
     }

@@ -11,11 +11,13 @@ public class MasterManager : MonoBehaviour
     GameManager _game = new GameManager();
     PoolManager _pool = new PoolManager();
     ResourceManager _resource = new ResourceManager();
+    AudioManager _audio = new AudioManager();
     UIManager _ui = new UIManager();
 
     public static GameManager Game { get { return Instance._game; } }
     public static PoolManager Pool { get { return Instance._pool; } }
     public static ResourceManager Resource { get { return Instance._resource; } }
+    public static AudioManager Audio { get { return Instance._audio; } }
     public static UIManager UI { get { return Instance._ui; } }
 
     void Start()
@@ -44,5 +46,6 @@ public class MasterManager : MonoBehaviour
         }
 
         m_instance._pool.Init();
+        m_instance._audio.Init();
     }
 }

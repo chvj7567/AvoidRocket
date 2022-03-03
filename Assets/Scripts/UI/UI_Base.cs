@@ -15,7 +15,6 @@ public abstract class UI_Base : MonoBehaviour
 		Init();
 	}
 
-	// type 열거형에 해당하는 이름을 가진 T 타입 컴포넌트를 연결한다.
 	protected void Bind<T>(Type type) where T : UnityEngine.Object
 	{
 		string[] names = Enum.GetNames(type);
@@ -34,7 +33,6 @@ public abstract class UI_Base : MonoBehaviour
 		}
 	}
 
-	// idx에 해당하는 T 타입 컴포넌트를 가져온다.
 	protected T Get<T>(int idx) where T : UnityEngine.Object
 	{
 		UnityEngine.Object[] objects = null;
@@ -44,18 +42,11 @@ public abstract class UI_Base : MonoBehaviour
 		return objects[idx] as T;
 	}
 
-	// idx에 해당하는 게임오브젝트를 가져온다.
 	protected GameObject GetObject(int idx) { return Get<GameObject>(idx); }
-
-	// idx에 해당하는 텍스트 컴포넌트를 가져온다.
 	protected Text GetText(int idx) { return Get<Text>(idx); }
-
-	// idx에 해당하는 이미지 컴포넌트를 가져온다.
 	protected Image GetImage(int idx) { return Get<Image>(idx); }
-	// idx에 해당하는 버튼 컴포넌트를 가져온다.
 	protected Button GetButton(int idx) { return Get<Button>(idx); }
 
-	// go에 type에 해당하는 이벤트를 연결 시킨다.
 	public static void BindEvent(GameObject go, Action action, Define.UIEvent type = Define.UIEvent.Update)
 	{
 		UI_EventHandler evt = Util.GetOrAddComponent<UI_EventHandler>(go);
@@ -69,7 +60,6 @@ public abstract class UI_Base : MonoBehaviour
 		}
 	}
 
-	// go에 type에 해당하는 이벤트를 연결 시킨다.
 	public static void BindEvent(GameObject go, Action<PointerEventData> action, Define.UIEvent type)
 	{
 		UI_EventHandler evt = Util.GetOrAddComponent<UI_EventHandler>(go);
@@ -95,7 +85,6 @@ public abstract class UI_Base : MonoBehaviour
 		}
 	}
 
-	// go에 type에 해당하는 이벤트를 연결을 해제한다.
 	public static void NoBindEvent(GameObject go, Action action, Define.UIEvent type = Define.UIEvent.Update)
 	{
 		UI_EventHandler evt = Util.GetOrAddComponent<UI_EventHandler>(go);
@@ -108,7 +97,6 @@ public abstract class UI_Base : MonoBehaviour
 		}
 	}
 
-	// go에 type에 해당하는 이벤트를 연결을 해제한다.
 	public static void NoBindEvent(GameObject go, Action<PointerEventData> action, Define.UIEvent type)
 	{
 		UI_EventHandler evt = Util.GetOrAddComponent<UI_EventHandler>(go);
