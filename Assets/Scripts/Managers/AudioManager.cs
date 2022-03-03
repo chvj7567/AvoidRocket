@@ -35,14 +35,18 @@ public class AudioManager
         {
             AudioSource audioSource = _audioSources[(int)Define.Audio.Bgm];
 
+            if (audioSource.isPlaying)
+                return;
             audioSource.pitch = pitch;
             audioSource.clip = audioClip;
+            audioSource.volume = 0.2f;
             audioSource.Play();
         }
         else
         {
             AudioSource audioSource = _audioSources[(int)Define.Audio.Explosion];
             audioSource.pitch = pitch;
+            audioSource.volume = 0.2f;
             audioSource.PlayOneShot(audioClip);
         }
     }
