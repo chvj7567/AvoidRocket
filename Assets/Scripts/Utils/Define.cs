@@ -21,7 +21,6 @@ public class Define
     {
         Unknown,
         Background,
-        RocketStartArea,
         Player,
         Rocket,
     }
