@@ -31,22 +31,24 @@ public class AudioManager
     {
         AudioClip audioClip = GetOrAddAudioClip(path, type);
 
+        AudioSource audioSource = _audioSources[(int)type];
+
+        audioSource.pitch = pitch;
+        
+
         if (type == Define.Audio.Bgm)
         {
-            AudioSource audioSource = _audioSources[(int)Define.Audio.Bgm];
+            audioSource.volume = 0.2f;
 
             if (audioSource.isPlaying)
                 return;
-            audioSource.pitch = pitch;
+            
             audioSource.clip = audioClip;
-            audioSource.volume = 0.2f;
             audioSource.Play();
         }
         else
         {
-            AudioSource audioSource = _audioSources[(int)Define.Audio.Explosion];
-            audioSource.pitch = pitch;
-            audioSource.volume = 0.2f;
+            audioSource.volume = 0.5f;
             audioSource.PlayOneShot(audioClip);
         }
     }

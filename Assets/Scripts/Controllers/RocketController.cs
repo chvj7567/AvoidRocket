@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class RocketController : BaseController
 {
-    [SerializeField]
     float _speed;
     Vector3 _direction;
+    float _time;
 
     public override void Init()
     {
@@ -30,12 +30,17 @@ public class RocketController : BaseController
         if (transform.position.y < -30 || transform.position.y > 30)
             Die();
 
-        _speed += 0.01f;
+        if (Time.time - _time > 1f)
+        {
+            _time = Time.time;
+            _speed *= 1.5f;
+        }
     }
 
     public override void Die()
     {
         State = Define.State.Die;
+        _speed = 1f;
         MasterManager.Game.Despawn(gameObject);
     }
 

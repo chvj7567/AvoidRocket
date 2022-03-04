@@ -15,6 +15,7 @@ public class Define
     {
         Bgm,
         Explosion,
+        RocketBoom,
         MaxCount,
     }
     public enum GameObjects

@@ -9,10 +9,19 @@ public class SpawningPool : MonoBehaviour
     [SerializeField]
     float _rocketGen;
 
+    float _time;
+    int _boomTime;
+    int _boomCycle;
+    bool _boomAudio;
     void Awake()
     {
         _rocketScale = 0.2f;
-        _rocketGen = 2f;
+        _rocketGen = 1f;
+        _time = 0;
+        _boomTime = 30;
+        _boomCycle = 30;
+        _boomAudio = false;
+
     }
     void Start()
     {
@@ -27,8 +36,29 @@ public class SpawningPool : MonoBehaviour
             string randomStr = string.Format("{0:D2}", random);
             Vector3 randPos;
 
-            if(_rocketGen > 0.2f)
+            if (Time.time > _boomTime && Time.time < _boomTime + 1)
+            {
+                _rocketGen = 0f;
+                if (!_boomAudio)
+                {
+                    Debug.Log($"{_boomTime} Boom");
+                    _boomAudio = true;
+                    MasterManager.Audio.Play("RocketBoom", Define.Audio.RocketBoom);
+                }
+            }
+
+            if (Time.time > _boomTime + 1)
+            {
+                _boomAudio = false;
+                _boomTime += _boomCycle;
+                _rocketGen = 0.5f;
+            }
+
+            if (_rocketGen > 0.1f && (Time.time - _time) > 5f)
+            {
+                _time = Time.time;
                 _rocketGen -= 0.1f;
+            }
 
             while (true)
             {
@@ -51,7 +81,7 @@ public class SpawningPool : MonoBehaviour
             CapsuleCollider2D col = Util.GetOrAddComponent<CapsuleCollider2D>(rocket);
 
             rocket.layer = LayerMask.NameToLayer("Rocket");
-            
+
             yield return new WaitForSeconds(_rocketGen);
         }
     }

@@ -87,7 +87,6 @@ public class PoolManager
         }
     }
 
-    // Pool을 이용해 풀을 만든 후 _root의 자식으로 배치한다.
     public void CreatePool(GameObject original, int count = 10)
     {
         Pool pool = new Pool();
@@ -120,7 +119,6 @@ public class PoolManager
         return _pool[original.name].Pop(parent);
     }
 
-    // 오브젝트의 원본을 반환한다.
     public GameObject GetOriginal(string name)
     {
         if (_pool.ContainsKey(name) == false)
@@ -128,7 +126,6 @@ public class PoolManager
         return _pool[name].Original;
     }
 
-    // _root를 초기화한다.(모두 파괴한다.)
     public void Clear()
     {
         foreach (Transform child in _root)

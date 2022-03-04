@@ -12,6 +12,7 @@ public class GameManager
     HashSet<GameObject> _rockets = new HashSet<GameObject>();
 
     GameObject explosion;
+    GameObject spawningPool;
 
     public bool IsStart { get; private set; }
     public bool IsEnd { get; private set; }
@@ -77,7 +78,7 @@ public class GameManager
         MasterManager.UI.DestroyUI(MasterManager.UI.StartUI, Define.UI.StartUI);
         MasterManager.UI.ShowUI("JoystickUI", Define.UI.Joystick);
         MasterManager.UI.ShowUI("TimeScoreUI", Define.UI.TimeScore);
-        GameObject spawningPool = new GameObject { name = "@Spawning Pool" };
+        spawningPool = new GameObject { name = "@Spawning Pool" };
         Util.GetOrAddComponent<SpawningPool>(spawningPool);
         Spawn(Define.GameObjects.Player, "SpaceShip");
     }
@@ -105,6 +106,7 @@ public class GameManager
         }
 
         Despawn(explosion);
+        Despawn(spawningPool);
         SceneManager.LoadScene(0);
     }
 }

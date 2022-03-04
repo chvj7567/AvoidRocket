@@ -38,12 +38,8 @@ public class UI_Score : UI_Base
             {
                 _record = _avoidTime;
 
-                UI_Score score = Util.FindChild(MasterManager.UI.Root, "TimeScoreUI", true).GetComponent<UI_Score>();
                 Text record = Util.FindChild(MasterManager.UI.Root, "Score", true).GetComponent<Text>();
-                if (score != null)
-                {
-                    record.text = $"{_record} second";
-                }
+                record.text = $"{_record} second";
 
                 _avoidTime = Time.time;
             }
