@@ -41,8 +41,6 @@ public class PlayerController : BaseController
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Wall")
-            return;
         MasterManager.Audio.Play("Explosion", Define.Audio.Explosion);
         MasterManager.Game.EndGame();
     }

@@ -11,7 +11,7 @@ public class RocketController : BaseController
     public override void Init()
     {
         State = Define.State.Alive;
-        _speed = 10f;
+        _speed = 1f;
         if(_player != null)
             _direction = (_player.position - transform.position).normalized;
         else
@@ -29,6 +29,8 @@ public class RocketController : BaseController
             Die();
         if (transform.position.y < -30 || transform.position.y > 30)
             Die();
+
+        _speed += 0.01f;
     }
 
     public override void Die()

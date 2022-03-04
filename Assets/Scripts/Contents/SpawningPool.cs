@@ -12,7 +12,7 @@ public class SpawningPool : MonoBehaviour
     void Awake()
     {
         _rocketScale = 0.2f;
-        _rocketGen = 1f;
+        _rocketGen = 2f;
     }
     void Start()
     {
@@ -26,6 +26,9 @@ public class SpawningPool : MonoBehaviour
             int random = Random.Range(1, 30);
             string randomStr = string.Format("{0:D2}", random);
             Vector3 randPos;
+
+            if(_rocketGen > 0.2f)
+                _rocketGen -= 0.1f;
 
             while (true)
             {
