@@ -10,7 +10,7 @@ public class UI_Start : UI_Base
 
     enum Buttons
     {
-        StartButton = 0,
+        StartButton,
     }
 
     public override void Init()

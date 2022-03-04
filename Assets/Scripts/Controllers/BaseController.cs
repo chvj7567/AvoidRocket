@@ -13,7 +13,7 @@ public abstract class BaseController : MonoBehaviour
     private void Awake()
     {
         GameObject go = GameObject.FindGameObjectWithTag("Player");
-        _joystick = Util.FindChild<UI_Joystick>(MasterManager.UI.Root, "Joystick", true);
+        _joystick = Util.FindChild<UI_Joystick>(MasterManager.UI.Root, "JoystickUI", true);
 
         if (go != null)
             _player = go.transform;

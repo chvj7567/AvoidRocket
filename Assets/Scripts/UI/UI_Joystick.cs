@@ -9,6 +9,7 @@ public class UI_Joystick : UI_Base
     RectTransform _lever;
     RectTransform _joystick;
     float _leverRange;
+
     public Vector2 TouchPos { get; private set; }
     public bool IsMove { get; private set; }
 
@@ -21,9 +22,10 @@ public class UI_Joystick : UI_Base
     public override void Init()
     {
         Bind<Image>(typeof(Images));
+        _joystick = GetImage((int)Images.Joystick).gameObject.GetComponent<RectTransform>();
         _lever = GetImage((int)Images.Lever).gameObject.GetComponent<RectTransform>();
-        _joystick = GetComponent<RectTransform>();
-        _leverRange = 35f;
+
+        _leverRange = _joystick.rect.width * 0.35f;
 
         BindEvent(_lever.gameObject, MoveStart, Define.UIEvent.BeginDrag);
         BindEvent(_lever.gameObject, MoveStart, Define.UIEvent.Drag);
