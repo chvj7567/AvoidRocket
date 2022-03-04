@@ -36,12 +36,13 @@ public class UI_Joystick : UI_Base
     {
         IsMove = true;
 
-        TouchPos = data.position - _joystick.anchoredPosition;
+        Vector2 rectPosition;
 
-        if (TouchPos.magnitude > _leverRange)
-        {
-            TouchPos = TouchPos.normalized * _leverRange;
-        }
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(_joystick, data.position, Camera.main, out rectPosition);
+
+        TouchPos = rectPosition;
+
+        TouchPos = Vector2.ClampMagnitude(TouchPos, _leverRange);
 
         _lever.anchoredPosition = TouchPos;
     }

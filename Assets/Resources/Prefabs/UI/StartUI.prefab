@@ -158,7 +158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3720998717877947631, guid: 4cbf10123ddf5204a8308d461dea85da, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 3720998717877947631, guid: 4cbf10123ddf5204a8308d461dea85da, type: 3}
       propertyPath: m_AnchoredPosition.y
