@@ -18,8 +18,8 @@ public class SpawningPool : MonoBehaviour
     {
         _rocketScale = 0.2f;
         _rocketGen = 1f;
-        _boomTime = 5;
-        _boomCycle = 5;
+        _boomTime = 30;
+        _boomCycle = 30;
         _boomAudio = false;
 
         _score = MasterManager.UI.Root.GetComponentInChildren<UI_Score>();
