@@ -31,6 +31,8 @@ public class UIManager
 
         if(go.name == "MainBackground")
             canvas.planeDistance = 15f;
+        else if (go.name == "DangerUI")
+            canvas.planeDistance = 10f;
         else
             canvas.planeDistance = 5f;
 
@@ -49,7 +51,7 @@ public class UIManager
         }
     }
 
-    public void ShowUI(string name, Define.UI type)
+    public GameObject ShowUI(string name, Define.UI type = Define.UI.Unknown)
     {
         GameObject go = MasterManager.Resource.Instantiate($"UI/{name}");
         go.transform.SetParent(Root.transform);
@@ -73,9 +75,11 @@ public class UIManager
                 TimeScore = go;
                 break;
         }
+
+        return go;
     }
 
-    public void DestroyUI(GameObject ui, Define.UI type)
+    public void DestroyUI(GameObject ui, Define.UI type = Define.UI.Unknown)
     {
         switch(type)
         {

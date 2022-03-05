@@ -14,15 +14,21 @@ public class SpawningPool : MonoBehaviour
     bool _boomAudio;
 
     UI_Score _score;
+
+    bool _dangerCheck;
+    GameObject _dangerUI;
+
     void Awake()
     {
         _rocketScale = 0.2f;
         _rocketGen = 1f;
-        _boomTime = 30;
-        _boomCycle = 30;
+        _boomTime = 20;
+        _boomCycle = 20;
         _boomAudio = false;
 
         _score = MasterManager.UI.Root.GetComponentInChildren<UI_Score>();
+        _dangerUI = MasterManager.UI.ShowUI("DangerUI", Define.UI.StartUI);
+        _dangerUI.SetActive(false);
     }
     void Start()
     {
@@ -45,6 +51,7 @@ public class SpawningPool : MonoBehaviour
                     Debug.Log($"{_boomTime} Boom");
                     _boomAudio = true;
                     MasterManager.Audio.Play("RocketBoom", Define.Audio.RocketBoom);
+                    StartCoroutine(Danger());
                 }
             }
 
@@ -87,6 +94,25 @@ public class SpawningPool : MonoBehaviour
             rocket.layer = LayerMask.NameToLayer("Rocket");
 
             yield return new WaitForSeconds(_rocketGen);
+        }
+    }
+
+    IEnumerator Danger()
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            if (_dangerCheck)
+            {
+                _dangerCheck = false;
+                _dangerUI.SetActive(false);
+            }
+            else
+            {
+                _dangerCheck = true;
+                _dangerUI.SetActive(true);
+            }
+
+            yield return new WaitForSeconds(0.25f);
         }
     }
 }

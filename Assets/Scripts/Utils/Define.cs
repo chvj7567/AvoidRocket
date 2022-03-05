@@ -28,6 +28,7 @@ public class Define
 
     public enum UI
     {
+        Unknown,
         Background,
         StartUI,
         EndUI,
