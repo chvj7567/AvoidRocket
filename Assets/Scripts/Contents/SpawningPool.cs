@@ -12,14 +12,17 @@ public class SpawningPool : MonoBehaviour
     int _boomTime;
     int _boomCycle;
     bool _boomAudio;
+
+    UI_Score _score;
     void Awake()
     {
         _rocketScale = 0.2f;
         _rocketGen = 1f;
-        _boomTime = 30;
-        _boomCycle = 30;
+        _boomTime = 5;
+        _boomCycle = 5;
         _boomAudio = false;
 
+        _score = MasterManager.UI.Root.GetComponentInChildren<UI_Score>();
     }
     void Start()
     {
@@ -28,13 +31,13 @@ public class SpawningPool : MonoBehaviour
 
     IEnumerator CreateRocket()
     {
-        while(true)
+        while (true)
         {
             int random = Random.Range(1, 30);
             string randomStr = string.Format("{0:D2}", random);
             Vector3 randPos;
 
-            if (Time.time > _boomTime && Time.time < _boomTime + 1)
+            if (_score.AvoidTime > _boomTime - 1 && _score.AvoidTime < _boomTime + 1)
             {
                 _rocketGen = 0f;
                 if (!_boomAudio)
@@ -45,7 +48,7 @@ public class SpawningPool : MonoBehaviour
                 }
             }
 
-            if (Time.time > _boomTime + 1)
+            if (_score.AvoidTime > _boomTime + 1)
             {
                 _boomAudio = false;
                 _boomTime += _boomCycle;
