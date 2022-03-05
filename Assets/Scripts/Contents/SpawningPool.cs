@@ -9,7 +9,6 @@ public class SpawningPool : MonoBehaviour
     [SerializeField]
     float _rocketGen;
 
-    float _time;
     int _boomTime;
     int _boomCycle;
     bool _boomAudio;
@@ -17,7 +16,6 @@ public class SpawningPool : MonoBehaviour
     {
         _rocketScale = 0.2f;
         _rocketGen = 1f;
-        _time = 0;
         _boomTime = 30;
         _boomCycle = 30;
         _boomAudio = false;
@@ -51,13 +49,7 @@ public class SpawningPool : MonoBehaviour
             {
                 _boomAudio = false;
                 _boomTime += _boomCycle;
-                _rocketGen = 0.5f;
-            }
-
-            if (_rocketGen > 0.1f && (Time.time - _time) > 5f)
-            {
-                _time = Time.time;
-                _rocketGen -= 0.1f;
+                _rocketGen = 0.3f;
             }
 
             while (true)
@@ -73,7 +65,16 @@ public class SpawningPool : MonoBehaviour
             GameObject rocket = MasterManager.Resource.Instantiate($"Rocket/Rocket{randomStr}_Red");
             rocket.transform.position = randPos;
             rocket.transform.localScale = new Vector3(_rocketScale, _rocketScale, _rocketScale);
-            RocketController controller = Util.GetOrAddComponent<RocketController>(rocket);
+
+            RocketController controller = rocket.GetComponent<RocketController>();
+            if (controller != null)
+            {
+                controller.Init();
+            }
+            else
+            {
+                controller = Util.GetOrAddComponent<RocketController>(rocket);
+            }
 
             Rigidbody2D rb = Util.GetOrAddComponent<Rigidbody2D>(rocket);
             rb.gravityScale = 0;

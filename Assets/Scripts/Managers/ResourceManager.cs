@@ -38,14 +38,17 @@ public class ResourceManager
         string name = path;
         int index = name.IndexOf('/');
 
-        if (index == 6)
+        if (name.Substring(0, index + 1) == "Rocket")
         {
             Util.GetOrAddComponent<Poolable>(original);
         }
 
         // 풀링 대상이면 Pop으로 꺼내준다.
+        // 이미 풀링 되었다면 초기화 후 반환
         if (original.GetComponent<Poolable>() != null)
+        {
             return MasterManager.Pool.Pop(original, parent).gameObject;
+        }
 
         GameObject go = Object.Instantiate(original, parent);
         go.name = original.name;

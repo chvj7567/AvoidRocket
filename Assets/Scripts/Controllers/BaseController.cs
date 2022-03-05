@@ -10,7 +10,7 @@ public abstract class BaseController : MonoBehaviour
 
     public Define.GameObjects GameObjectType { get; protected set; } = Define.GameObjects.Unknown;
 
-    private void Awake()
+    protected void Awake()
     {
         GameObject go = GameObject.FindGameObjectWithTag("Player");
         _joystick = Util.FindChild<UI_Joystick>(MasterManager.UI.Root, "JoystickUI", true);

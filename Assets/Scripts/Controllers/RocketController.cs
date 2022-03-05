@@ -10,6 +10,8 @@ public class RocketController : BaseController
 
     public override void Init()
     {
+        base.Awake();
+
         State = Define.State.Alive;
         _speed = 1f;
         if(_player != null)
@@ -40,7 +42,6 @@ public class RocketController : BaseController
     public override void Die()
     {
         State = Define.State.Die;
-        _speed = 1f;
         MasterManager.Game.Despawn(gameObject);
     }
 
