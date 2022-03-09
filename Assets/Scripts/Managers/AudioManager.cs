@@ -6,6 +6,9 @@ public class AudioManager
 {
     AudioSource[] _audioSources = new AudioSource[(int)Define.Audio.MaxCount];
     Dictionary<string, AudioClip> _audioClips = new Dictionary<string, AudioClip>();
+    float _bgmVolume = 0.2f;
+    float _effectVolume = 0.5f;
+    public float Ratio { get; private set; } = 1;
 
     public void Init()
     {
@@ -13,7 +16,7 @@ public class AudioManager
         if (root == null)
         {
             root = new GameObject { name = "@Audio" };
-            Object.DontDestroyOnLoad(root);
+            
 
             string[] soundNames = System.Enum.GetNames(typeof(Define.Audio));
             for (int i = 0; i < soundNames.Length - 1; i++)
@@ -25,6 +28,14 @@ public class AudioManager
 
             _audioSources[(int)Define.Audio.Bgm].loop = true;
         }
+
+        Object.DontDestroyOnLoad(root);
+    }
+
+    public void SetVolume(float ratio)
+    {
+        Ratio = ratio;
+        _audioSources[(int)Define.Audio.Bgm].volume = _bgmVolume * Ratio;
     }
 
     public void Play(string path, Define.Audio type, float pitch = 1.0f)
@@ -38,7 +49,7 @@ public class AudioManager
 
         if (type == Define.Audio.Bgm)
         {
-            audioSource.volume = 0.2f;
+            audioSource.volume = _bgmVolume * Ratio;
 
             if (audioSource.isPlaying)
                 return;
@@ -48,7 +59,7 @@ public class AudioManager
         }
         else
         {
-            audioSource.volume = 0.5f;
+            audioSource.volume = _effectVolume * Ratio;
             audioSource.PlayOneShot(audioClip);
         }
     }

@@ -285,7 +285,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2154531509468631592, guid: 419aeab626c16734493b5098b0130cf9, type: 3}
       propertyPath: m_Name
-      value: BackButton
+      value: Back
       objectReference: {fileID: 0}
     - target: {fileID: 2262871122585947603, guid: 419aeab626c16734493b5098b0130cf9, type: 3}
       propertyPath: m_FontData.m_BestFit
@@ -297,7 +297,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3249960680494389085, guid: 419aeab626c16734493b5098b0130cf9, type: 3}
       propertyPath: m_Name
-      value: Back
+      value: Text
       objectReference: {fileID: 0}
     - target: {fileID: 4785277482705118345, guid: 419aeab626c16734493b5098b0130cf9, type: 3}
       propertyPath: m_SizeDelta.x

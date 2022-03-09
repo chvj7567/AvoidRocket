@@ -9,16 +9,19 @@ public class UIManager
     public GameObject EndUI { get; private set; }
     public GameObject Joystick { get; private set; }
     public GameObject TimeScore { get; private set; }
+    public GameObject SettingUI { get; private set; }
 
     int _order = 1;
     public GameObject Root
     {
         get
         {
-            GameObject root = GameObject.Find("@UI_Root");
+            GameObject root = GameObject.Find("@UI_Root");  
+
             if (root == null)
             {
                 root = new GameObject { name = "@UI_Root" };
+                
             }
             return root;
         }
@@ -54,32 +57,48 @@ public class UIManager
     public GameObject ShowUI(string name, Define.UI type = Define.UI.Unknown)
     {
         GameObject go = MasterManager.Resource.Instantiate($"UI/{name}");
-        go.transform.SetParent(Root.transform);
-        SetCanvas(go);
 
         switch(type)
         {
             case Define.UI.Background:
+                if (Background != null)
+                    return Background;
                 Background = go;
                 break;
             case Define.UI.StartUI:
+                if (StartUI != null)
+                    return StartUI;
                 StartUI = go;
                 break;
             case Define.UI.EndUI:
+                if (EndUI != null)
+                    return EndUI;
                 EndUI = go;
                 break;
             case Define.UI.Joystick:
+                if (Joystick != null)
+                    return Joystick;
                 Joystick = go;
                 break;
             case Define.UI.TimeScore:
+                if (TimeScore != null)
+                    return TimeScore;
                 TimeScore = go;
                 break;
+            case Define.UI.SettingUI:
+                if (SettingUI != null)
+                    return SettingUI;
+                SettingUI = go;
+                break;
         }
+
+        go.transform.SetParent(Root.transform);
+        SetCanvas(go);
 
         return go;
     }
 
-    public void DestroyUI(GameObject ui, Define.UI type = Define.UI.Unknown)
+    public void HideUI(GameObject ui, Define.UI type = Define.UI.Unknown)
     {
         switch(type)
         {
@@ -98,8 +117,11 @@ public class UIManager
             case Define.UI.TimeScore:
                 TimeScore = null;
                 break;
+            case Define.UI.SettingUI:
+                SettingUI = null;
+                break;
         }
 
-        MasterManager.Resource.Destroy(ui);
+        ui.SetActive(false);
     }
 }

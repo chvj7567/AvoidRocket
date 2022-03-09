@@ -34,6 +34,8 @@ public class Define
         EndUI,
         Joystick,
         TimeScore,
+        SettingUI,
+        DangerUI,
     }
 
     public enum UIEvent

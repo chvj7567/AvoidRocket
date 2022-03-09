@@ -9,8 +9,6 @@ public class GameManager
 {
     GameObject _background;
     GameObject _player;
-    HashSet<GameObject> _rockets = new HashSet<GameObject>();
-
     GameObject explosion;
     GameObject spawningPool;
 
@@ -33,9 +31,6 @@ public class GameManager
                 break;
             case Define.GameObjects.Player:
                 _player = go;
-                break;
-            case Define.GameObjects.Rocket:
-                _rockets.Add(go);
                 break;
         }
 
@@ -63,9 +58,6 @@ public class GameManager
             case Define.GameObjects.Player:
                 _player = null;
                 break;
-            case Define.GameObjects.Rocket:
-                _rockets.Remove(go);
-                break;
         }
 
         MasterManager.Resource.Destroy(go);
@@ -75,7 +67,7 @@ public class GameManager
     {
         IsStart = true;
         IsEnd = false;
-        MasterManager.UI.DestroyUI(MasterManager.UI.StartUI, Define.UI.StartUI);
+        MasterManager.UI.HideUI(MasterManager.UI.StartUI, Define.UI.StartUI);
         MasterManager.UI.ShowUI("JoystickUI", Define.UI.Joystick);
         MasterManager.UI.ShowUI("TimeScoreUI", Define.UI.TimeScore);
         spawningPool = new GameObject { name = "@Spawning Pool" };
@@ -98,15 +90,39 @@ public class GameManager
         explosion.transform.position = _player.transform.position;
     }
 
-    public void BackGame()
+    public void SettingGame()
     {
-        foreach (GameObject go in _rockets)
+        MasterManager.UI.StartUI.SetActive(false);
+        if (MasterManager.UI.SettingUI == null)
         {
-            Despawn(go);
+            MasterManager.UI.ShowUI("SettingUI", Define.UI.SettingUI);
         }
+        else
+        {
+            MasterManager.UI.SettingUI.SetActive(true);
+        }
+    }
 
-        Despawn(explosion);
-        Despawn(spawningPool);
-        SceneManager.LoadScene(0);
+    public void BackGame(UI_Base ui)
+    {
+        if (ui is UI_End)
+        {
+            GameObject[] rockets = GameObject.FindGameObjectsWithTag("Rocket");
+
+            foreach (GameObject rocket in rockets)
+                Despawn(rocket);
+
+            Despawn(explosion);
+            Despawn(spawningPool);
+            MasterManager.UI.HideUI(MasterManager.UI.EndUI, Define.UI.EndUI);
+            MasterManager.UI.HideUI(MasterManager.UI.Joystick, Define.UI.Joystick);
+            MasterManager.UI.HideUI(MasterManager.UI.TimeScore, Define.UI.TimeScore);
+            MasterManager.UI.ShowUI("StartUI", Define.UI.StartUI);
+        }
+        else if (ui is UI_Setting)
+        {
+            MasterManager.UI.SettingUI.SetActive(false);
+            MasterManager.UI.StartUI.SetActive(true);
+        }
     }
 }

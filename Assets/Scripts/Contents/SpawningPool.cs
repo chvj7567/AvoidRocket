@@ -27,7 +27,7 @@ public class SpawningPool : MonoBehaviour
         _boomAudio = false;
 
         _score = MasterManager.UI.Root.GetComponentInChildren<UI_Score>();
-        _dangerUI = MasterManager.UI.ShowUI("DangerUI", Define.UI.StartUI);
+        _dangerUI = MasterManager.UI.ShowUI("DangerUI", Define.UI.DangerUI);
         _dangerUI.SetActive(false);
     }
     void Start()
@@ -92,6 +92,7 @@ public class SpawningPool : MonoBehaviour
             CapsuleCollider2D col = Util.GetOrAddComponent<CapsuleCollider2D>(rocket);
 
             rocket.layer = LayerMask.NameToLayer("Rocket");
+            rocket.tag = "Rocket";
 
             yield return new WaitForSeconds(_rocketGen);
         }
