@@ -125,4 +125,13 @@ public class GameManager
             MasterManager.UI.StartUI.SetActive(true);
         }
     }
+
+    public void ExitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
 }

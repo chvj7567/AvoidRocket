@@ -8,11 +8,13 @@ public class UI_Start : UI_Base
 {
     Button _start;
     Button _setting;
+    Button _exit;
 
     enum Buttons
     {
         Start,
         Setting,
+        Exit
     }
 
     public override void Init()
@@ -20,8 +22,11 @@ public class UI_Start : UI_Base
         Bind<Button>(typeof(Buttons));
         _start = GetButton((int)Buttons.Start).gameObject.GetComponent<Button>();
         _setting = GetButton((int)Buttons.Setting).gameObject.GetComponent<Button>();
+        _exit = GetButton((int)Buttons.Exit).gameObject.GetComponent<Button>();
+
         BindEvent(_start.gameObject, StartGame, Define.UIEvent.Click);
         BindEvent(_setting.gameObject, SettingGame, Define.UIEvent.Click);
+        BindEvent(_exit.gameObject, ExitGame, Define.UIEvent.Click);
     }
 
     public void StartGame(PointerEventData data)
@@ -32,5 +37,10 @@ public class UI_Start : UI_Base
     public void SettingGame(PointerEventData data)
     {
         MasterManager.Game.SettingGame();
+    }
+
+    public void ExitGame(PointerEventData data)
+    {
+        MasterManager.Game.ExitGame();
     }
 }
