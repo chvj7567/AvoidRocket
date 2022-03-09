@@ -25,7 +25,12 @@
     (조이스틱의 이동에 제한을 받지 않게 하기 위해 배경과 조이스틱 사이에 배치하였다.)
 
 ## 게임 제작 후 배운 점
-
+```
+첫 게임을 만드는 과정에서 단순히 게임의 기능을 구현한다기보다는 구조를 정확히 파악하고 코드의 유지보수성을 위해 클래스와 함수로
+기능을 명확히 구분하도록 하였다. 이후 기능을 추가하거나 수정할 때 확실히 코드의 수정이나 추가가 쉬웠고, 이 구조를 통해 다른 게임의
+구조로도 사용하여 다양한 게임을 만들 수 있을 것 같다.
+```
+    
 * #### 지정 축 기준으로 이동하는 법
   - 로켓이 발사되면서 LookAt()을 통해 로켓의 바라보는 방향을 변경하였는데 해당 로켓은 y축이 기준이 되어야 했다.
     transfrom.up을 방향 벡터로 지정해주면 y축이 해당방향을 바라보며 간다는 것을 알았고 다른 축도 응용이 가능함을 알았다.
@@ -43,6 +48,7 @@
   - 오브젝트 풀링 기법을 이용하면서 게임의 시작 시간이 지남에 따라 로켓의 목표 지점이 이상하여 코드를 유심히 들여다보니
     초기화 하는 부분이 풀링을 이용하면서 되지 않았기에 풀링을 이용하여 로켓을 활성화할 경우 초기화를 직접 해주었다.
 
+
 ## 게임 화면
 <img width="80%" src="https://user-images.githubusercontent.com/37278829/156876690-b43b7a20-bc2a-424b-b213-483368479617.png"/>
 <img width="80%" src="https://user-images.githubusercontent.com/37278829/156876691-f9b40a52-a944-45a0-9e48-36e9ac12e2e7.png"/>
@@ -50,3 +56,7 @@
 <img width="80%" src="https://user-images.githubusercontent.com/37278829/156876698-bd266502-6807-4632-a24c-1584f5eb73d9.png"/>
 <img width="80%" src="https://user-images.githubusercontent.com/37278829/156876701-af8b333e-60e4-445d-bef3-3eaaacad6c81.png"/>
 <img width="80%" src="https://user-images.githubusercontent.com/37278829/156876702-242053b0-98c6-46c1-8a1d-249d081df5cb.png"/>
+
+## 게임 시작 화면 수정(볼륨 설정 및 게임 종료 추가)
+<img width="80%" src="https://user-images.githubusercontent.com/37278829/157395431-64bd3441-eb5d-4bf2-b6f7-4c5f7200e4b4.png"/>
+<img width="80%" src="https://user-images.githubusercontent.com/37278829/157395437-20b369de-4f8e-4471-8c14-449266a3779e.png"/>
