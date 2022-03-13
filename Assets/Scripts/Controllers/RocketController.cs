@@ -22,7 +22,7 @@ public class RocketController : BaseController
         GameObjectType = Define.GameObjects.Rocket;
     }
 
-    public override void Move()
+    protected override void Move()
     {
         transform.position += _direction * Time.deltaTime * _speed;
         transform.up = _direction;
@@ -39,7 +39,7 @@ public class RocketController : BaseController
         }
     }
 
-    public override void Die()
+    protected override void Die()
     {
         State = Define.State.Die;
         MasterManager.Game.Despawn(gameObject);

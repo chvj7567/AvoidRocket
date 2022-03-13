@@ -30,6 +30,6 @@ public abstract class BaseController : MonoBehaviour
     }
 
     public abstract void Init();
-    public virtual void Move() { }
-    public virtual void Die() { }
+    protected virtual void Move() { }
+    protected virtual void Die() { }
 }

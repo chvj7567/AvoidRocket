@@ -16,7 +16,7 @@ public class PlayerController : BaseController
         GameObjectType = Define.GameObjects.Player;
     }
 
-    public override void Move()
+    protected override void Move()
     {
         if (_joystick.IsMove && State == Define.State.Alive)
         {
@@ -34,7 +34,7 @@ public class PlayerController : BaseController
         }
     }
 
-    public override void Die()
+    protected override void Die()
     {
         State = Define.State.Die;
     }
