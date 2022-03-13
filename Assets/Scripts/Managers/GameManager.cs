@@ -12,8 +12,7 @@ public class GameManager
     GameObject explosion;
     GameObject spawningPool;
 
-    public bool IsStart { get; private set; }
-    public bool IsEnd { get; private set; }
+    public bool IsGaming { get; private set; }
 
     public GameObject GetPlayer() { return _player; }
 
@@ -65,8 +64,7 @@ public class GameManager
 
     public void StartGame()
     {
-        IsStart = true;
-        IsEnd = false;
+        IsGaming = true;
         spawningPool = new GameObject { name = "@Spawning Pool" };
         Util.GetOrAddComponent<SpawningPool>(spawningPool);
         Spawn(Define.GameObjects.Player, "SpaceShip");
@@ -74,8 +72,7 @@ public class GameManager
 
     public void EndGame()
     {
-        IsStart = false;
-        IsEnd = true;
+        IsGaming = false;
         Explosion();
         Despawn(_player);
         MasterManager.UI.ShowUI("EndUI", Define.UI.EndUI);
@@ -96,6 +93,7 @@ public class GameManager
 
         Despawn(explosion);
         Despawn(spawningPool);
+        Despawn(MasterManager.UI.TimeScore);
     }
 
     public void ExitGame()

@@ -23,8 +23,8 @@ public class UI_Setting : UI_Base
         Bind<Slider>(typeof(Sliders));
         Bind<Button>(typeof(Buttons));
 
-        _volume = Get<Slider>((int)Sliders.VolumeS).gameObject.GetComponent<Slider>();
-        _back = GetButton((int)Buttons.Back).gameObject.GetComponent<Button>();
+        _volume = Get<Slider>((int)Sliders.VolumeS);
+        _back = GetButton((int)Buttons.Back);
 
         BindEvent(_volume.gameObject, SliderVolume);
         BindEvent(_back.gameObject, BackGame, Define.UIEvent.Click);
@@ -37,7 +37,7 @@ public class UI_Setting : UI_Base
 
     public void BackGame(PointerEventData data)
     {
-        MasterManager.UI.HideUI(gameObject, Define.UI.SettingUI);
+        MasterManager.UI.HideUI(gameObject);
         MasterManager.UI.ShowUI("StartUI", Define.UI.StartUI);
     }
 }

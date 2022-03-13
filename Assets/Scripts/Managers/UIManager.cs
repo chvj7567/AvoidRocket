@@ -10,6 +10,8 @@ public class UIManager
     public GameObject Joystick { get; private set; }
     public GameObject TimeScore { get; private set; }
     public GameObject SettingUI { get; private set; }
+    public GameObject DangerUI { get; private set; }
+
 
     int _order = 1;
     public GameObject Root
@@ -56,39 +58,65 @@ public class UIManager
 
     public GameObject ShowUI(string name, Define.UI type = Define.UI.Unknown)
     {
-        GameObject go = MasterManager.Resource.Instantiate($"UI/{name}");
+        GameObject go = null;
 
         switch(type)
         {
             case Define.UI.Background:
                 if (Background != null)
+                {
+                    Background.SetActive(true);
                     return Background;
-                Background = go;
+                }
+                Background = go = MasterManager.Resource.Instantiate($"UI/{name}");
                 break;
             case Define.UI.StartUI:
                 if (StartUI != null)
+                {
+                    StartUI.SetActive(true);
                     return StartUI;
-                StartUI = go;
+                }
+                StartUI = go = MasterManager.Resource.Instantiate($"UI/{name}"); ;
                 break;
             case Define.UI.EndUI:
                 if (EndUI != null)
+                {
+                    EndUI.SetActive(true);
                     return EndUI;
-                EndUI = go;
+                }
+                EndUI = go = MasterManager.Resource.Instantiate($"UI/{name}"); ;
                 break;
             case Define.UI.Joystick:
                 if (Joystick != null)
+                {
+                    Joystick.SetActive(true);
                     return Joystick;
-                Joystick = go;
+                }
+                Joystick = go = MasterManager.Resource.Instantiate($"UI/{name}"); ;
                 break;
             case Define.UI.TimeScore:
                 if (TimeScore != null)
+                {
+                    TimeScore.SetActive(true);
                     return TimeScore;
-                TimeScore = go;
+                }
+                TimeScore = go = MasterManager.Resource.Instantiate($"UI/{name}"); ;
                 break;
             case Define.UI.SettingUI:
                 if (SettingUI != null)
+                {
+                    SettingUI.SetActive(true);
                     return SettingUI;
-                SettingUI = go;
+                }
+                SettingUI = go = MasterManager.Resource.Instantiate($"UI/{name}"); ;
+                break;
+            case Define.UI.DangerUI:
+                if (DangerUI != null)
+                {
+                    DangerUI.SetActive(true);
+                    return DangerUI;
+                }
+                DangerUI = go = MasterManager.Resource.Instantiate($"UI/{name}"); ;
                 break;
         }
 
@@ -98,30 +126,8 @@ public class UIManager
         return go;
     }
 
-    public void HideUI(GameObject ui, Define.UI type = Define.UI.Unknown)
+    public void HideUI(GameObject ui)
     {
-        switch(type)
-        {
-            case Define.UI.Background:
-                Background = null;
-                break;
-            case Define.UI.StartUI:
-                StartUI = null;
-                break;
-            case Define.UI.EndUI:
-                EndUI = null;
-                break;
-            case Define.UI.Joystick:
-                Joystick = null;
-                break;
-            case Define.UI.TimeScore:
-                TimeScore = null;
-                break;
-            case Define.UI.SettingUI:
-                SettingUI = null;
-                break;
-        }
-
         ui.SetActive(false);
     }
 }

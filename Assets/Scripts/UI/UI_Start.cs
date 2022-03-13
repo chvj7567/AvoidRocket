@@ -20,9 +20,9 @@ public class UI_Start : UI_Base
     public override void Init()
     {
         Bind<Button>(typeof(Buttons));
-        _start = GetButton((int)Buttons.Start).gameObject.GetComponent<Button>();
-        _setting = GetButton((int)Buttons.Setting).gameObject.GetComponent<Button>();
-        _exit = GetButton((int)Buttons.Exit).gameObject.GetComponent<Button>();
+        _start = GetButton((int)Buttons.Start);
+        _setting = GetButton((int)Buttons.Setting);
+        _exit = GetButton((int)Buttons.Exit);
 
         BindEvent(_start.gameObject, StartGame, Define.UIEvent.Click);
         BindEvent(_setting.gameObject, SettingGame, Define.UIEvent.Click);
@@ -31,7 +31,7 @@ public class UI_Start : UI_Base
 
     public void StartGame(PointerEventData data)
     {
-        MasterManager.UI.HideUI(gameObject, Define.UI.StartUI);
+        MasterManager.UI.HideUI(gameObject);
         MasterManager.UI.ShowUI("JoystickUI", Define.UI.Joystick);
         MasterManager.UI.ShowUI("TimeScoreUI", Define.UI.TimeScore);
         MasterManager.Game.StartGame();
@@ -39,7 +39,7 @@ public class UI_Start : UI_Base
 
     public void SettingGame(PointerEventData data)
     {
-        MasterManager.UI.HideUI(gameObject, Define.UI.StartUI);
+        MasterManager.UI.HideUI(gameObject);
         MasterManager.UI.ShowUI("SettingUI", Define.UI.SettingUI);
     }
 

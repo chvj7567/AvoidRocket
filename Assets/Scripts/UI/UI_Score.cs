@@ -32,7 +32,7 @@ public class UI_Score : UI_Base
         AvoidTime = float.Parse((Time.time - _startTime).ToString("F0"));
         _score.text = $"Time : {AvoidTime} second";
 
-        if (MasterManager.Game.IsEnd)
+        if (!MasterManager.Game.IsGaming)
         {
             if (_record == -1 || _record > AvoidTime)
             {

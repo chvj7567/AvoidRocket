@@ -10,16 +10,20 @@ public class RocketController : BaseController
 
     public override void Init()
     {
-        base.Awake();
-
         State = Define.State.Alive;
         _speed = 1f;
+
         if(_player != null)
             _direction = (_player.position - transform.position).normalized;
         else
             _direction = (Vector3.zero - transform.position).normalized;
 
         GameObjectType = Define.GameObjects.Rocket;
+    }
+
+    private void OnEnable()
+    {
+        Awake();
     }
 
     protected override void Move()
