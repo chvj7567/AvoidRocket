@@ -67,9 +67,6 @@ public class GameManager
     {
         IsStart = true;
         IsEnd = false;
-        MasterManager.UI.HideUI(MasterManager.UI.StartUI, Define.UI.StartUI);
-        MasterManager.UI.ShowUI("JoystickUI", Define.UI.Joystick);
-        MasterManager.UI.ShowUI("TimeScoreUI", Define.UI.TimeScore);
         spawningPool = new GameObject { name = "@Spawning Pool" };
         Util.GetOrAddComponent<SpawningPool>(spawningPool);
         Spawn(Define.GameObjects.Player, "SpaceShip");
@@ -90,40 +87,15 @@ public class GameManager
         explosion.transform.position = _player.transform.position;
     }
 
-    public void SettingGame()
+    public void BackGame()
     {
-        MasterManager.UI.StartUI.SetActive(false);
-        if (MasterManager.UI.SettingUI == null)
-        {
-            MasterManager.UI.ShowUI("SettingUI", Define.UI.SettingUI);
-        }
-        else
-        {
-            MasterManager.UI.SettingUI.SetActive(true);
-        }
-    }
+        GameObject[] rockets = GameObject.FindGameObjectsWithTag("Rocket");
 
-    public void BackGame(UI_Base ui)
-    {
-        if (ui is UI_End)
-        {
-            GameObject[] rockets = GameObject.FindGameObjectsWithTag("Rocket");
+        foreach (GameObject rocket in rockets)
+            Despawn(rocket);
 
-            foreach (GameObject rocket in rockets)
-                Despawn(rocket);
-
-            Despawn(explosion);
-            Despawn(spawningPool);
-            MasterManager.UI.HideUI(MasterManager.UI.EndUI, Define.UI.EndUI);
-            MasterManager.UI.HideUI(MasterManager.UI.Joystick, Define.UI.Joystick);
-            MasterManager.UI.HideUI(MasterManager.UI.TimeScore, Define.UI.TimeScore);
-            MasterManager.UI.ShowUI("StartUI", Define.UI.StartUI);
-        }
-        else if (ui is UI_Setting)
-        {
-            MasterManager.UI.SettingUI.SetActive(false);
-            MasterManager.UI.StartUI.SetActive(true);
-        }
+        Despawn(explosion);
+        Despawn(spawningPool);
     }
 
     public void ExitGame()

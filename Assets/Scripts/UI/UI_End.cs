@@ -31,6 +31,10 @@ public class UI_End : UI_Base
 
     public void BackGame(PointerEventData data)
     {
-        MasterManager.Game.BackGame(this);
+        MasterManager.Game.BackGame();
+        MasterManager.UI.HideUI(MasterManager.UI.EndUI, Define.UI.EndUI);
+        MasterManager.UI.HideUI(MasterManager.UI.Joystick, Define.UI.Joystick);
+        MasterManager.UI.HideUI(MasterManager.UI.TimeScore, Define.UI.TimeScore);
+        MasterManager.UI.ShowUI("StartUI", Define.UI.StartUI);
     }
 }

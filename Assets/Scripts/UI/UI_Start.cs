@@ -31,12 +31,16 @@ public class UI_Start : UI_Base
 
     public void StartGame(PointerEventData data)
     {
+        MasterManager.UI.HideUI(gameObject, Define.UI.StartUI);
+        MasterManager.UI.ShowUI("JoystickUI", Define.UI.Joystick);
+        MasterManager.UI.ShowUI("TimeScoreUI", Define.UI.TimeScore);
         MasterManager.Game.StartGame();
     }
 
     public void SettingGame(PointerEventData data)
     {
-        MasterManager.Game.SettingGame();
+        MasterManager.UI.HideUI(gameObject, Define.UI.StartUI);
+        MasterManager.UI.ShowUI("SettingUI", Define.UI.SettingUI);
     }
 
     public void ExitGame(PointerEventData data)

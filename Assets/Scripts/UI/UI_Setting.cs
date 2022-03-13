@@ -37,6 +37,7 @@ public class UI_Setting : UI_Base
 
     public void BackGame(PointerEventData data)
     {
-        MasterManager.Game.BackGame(this);
+        MasterManager.UI.HideUI(gameObject, Define.UI.SettingUI);
+        MasterManager.UI.ShowUI("StartUI", Define.UI.StartUI);
     }
 }
