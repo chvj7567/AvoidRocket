@@ -65,10 +65,11 @@ public class SpawningPool : MonoBehaviour
             while (true)
             {
                 randPos = Random.insideUnitCircle * 30;
-
-                if (randPos.x > 21 || randPos.x < -21)
+                if (randPos.x > Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0f)).x
+                    || randPos.x < Camera.main.ScreenToWorldPoint(new Vector2(0f, 0f)).x)
                     break;
-                if (randPos.y > 11 || randPos.y < -11)
+                if (randPos.y > Camera.main.ScreenToWorldPoint(new Vector2(0f, Screen.height)).y
+                    || randPos.y < Camera.main.ScreenToWorldPoint(new Vector2(0f, 0f)).y)
                     break;
             }
 
